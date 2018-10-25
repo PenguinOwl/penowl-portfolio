@@ -1,6 +1,6 @@
 <body>
-<h1>New Project</h1>
-<%= form_with scope: :project, local: true do |form| %>
+  <h1>New Project</h1>
+  <%= form_with scope: :project, url: projects_path, local: true do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -14,7 +14,7 @@
   <p>
     <%= form.label :date %><br>
     <%= form.text_field :date%>
-  <p>
+  </p>
 
   <p>
     <%= form.label :imagelink %><br>
@@ -25,5 +25,5 @@
     <%= form.submit %>
   </p>
 
-<% end %>
+  <% end %>
 </body>
