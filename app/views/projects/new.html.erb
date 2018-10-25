@@ -1,0 +1,29 @@
+<body>
+<h1>New Project</h1>
+<%= form_with scope: :project, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+
+  <p>
+    <%= form.label :date %><br>
+    <%= form.text_field :date%>
+  <p>
+
+  <p>
+    <%= form.label :imagelink %><br>
+    <%= form.text_field :imagelink%>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+</body>
