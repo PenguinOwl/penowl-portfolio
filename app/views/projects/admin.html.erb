@@ -12,11 +12,15 @@
       <td><%= project.title %></td>
       <td><img src="<%= project.imagelink %>" height="42" width="42"></td>
       <td><%= link_to 'Show', project_path(project) %></td>
+      <td><%= link_to 'Edit', edit_project_path(project) %></td>
+      <td><%= link_to 'Destroy', project_path(project),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 
   <tr>
       <td></td>
       <td></td>
-      <td><%= link_to 'Admin', "/admin" %></td>
+      <td><%= link_to 'New', new_project_path %></td>
 </table>
