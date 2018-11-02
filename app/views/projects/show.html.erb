@@ -5,14 +5,7 @@
 
 <p>
   <strong>Info:</strong><br>
-  <% @project.text.split("\n").each do |etext| %>
-    <% if etext[0..4] == "[img]" %>
-      <img src="<%= etext[5..-1] %>" >
-    <% else %>
-      <%= etext %>
-      <br>
-    <% end %>
-  <% end %>
+  <%= @renderer.render(@project.text).html_safe %>
 </p>
 
 <p>
