@@ -1,17 +1,26 @@
 
 <h1><%= @project.title.html_safe %></h1>
-
+<br>
+<hr>
+<br>
 <img src="<%= @project.imagelink.html_safe %>" alt="Project Image" width="400">
-
+<br>
+<hr>
+<br>
 <p>
   <strong>Info:</strong><br>
   <%= @renderer.render(@project.text).html_safe %>
 </p>
-
+<br>
+<hr>
+<br>
 <p>
   <strong>Date completed:</strong><br>
   <%= @project.date.html_safe %>
 </p>
+<br>
+<hr>
+<br>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
