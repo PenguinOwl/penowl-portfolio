@@ -9,7 +9,7 @@
 
   <% @projects.each do |project| %>
     <tr>
-      <td><%= project.title %></td>
+      <td><div class="container"><%= project.title %></div></td>
       <td><img src="<%= project.imagelink %>" height="42" width="42"></td>
       <td><%= link_to 'Show', project_path(project) %></td>
     </tr>
