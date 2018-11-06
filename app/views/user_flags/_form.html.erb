@@ -1,0 +1,27 @@
+<%= form_with(model: user_flag, local: true) do |form| %>
+  <% if user_flag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_flag.errors.count, "error") %> prohibited this user_flag from being saved:</h2>
+
+      <ul>
+      <% user_flag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user %>
+    <%= form.text_field :user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

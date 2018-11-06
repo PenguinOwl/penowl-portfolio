@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
 
-  http_basic_authenticate_with name: ENV['RAILS_LOGIN'].to_s, password: ENV['RAILS_PASSWORD'].to_s, except: [:index, :show]
+  before_action except: [:index, :show] do
+    authenticate_user!
+    user_flag "admin"
+  end
 
   def index
     @projects = Project.all
@@ -9,7 +12,7 @@ class ProjectsController < ApplicationController
   def admin
     @projects = Project.all
   end
-  
+
   def show
     @project = Project.find(params[:id])
     @renderer = Redcarpet::Markdown.new(MarkdownRenderer, no_intra_emphasis: true, autolink: true, fenced_code_blocks: true, disable_indented_code_blocks: true)

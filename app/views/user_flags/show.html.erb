@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_flag.user %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @user_flag.content %>
+</p>
+
+<%= link_to 'Edit', edit_user_flag_path(@user_flag) %> |
+<%= link_to 'Back', user_flags_path %>
