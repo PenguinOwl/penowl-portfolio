@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html>
+<% unless notice.nil? %>
+<div class="notice">
+  <div class="container-fluid">
+    <b><%= notice %></b>
+  </div>
+</div>
+<% end %>
+<% unless alert.nil? %>
+<div class="alert">
+  <div class="container-fluid">
+    <b><%= alert %></b>
+  </div>
+</div>
+<% end %>
 <head>
   <title>Henry's Website</title>
   <%= csrf_meta_tags %>
