@@ -25,5 +25,6 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :check_user_flag
-  
+  helper_method :user_flag
+
 end
