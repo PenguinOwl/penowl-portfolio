@@ -8,7 +8,9 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
   config.authorize_with do
-   redirect_to main_app.root_path unless current_user.user_flags.include? :admin
+   unless current_user && current_user.user_flags.include?(:admin)
+     redirect_to main_app.root_path, notice: "You are not allowed to access the admin panel."
+   end
   end
 
   ## == Cancan ==
