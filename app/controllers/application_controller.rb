@@ -14,11 +14,13 @@ class ApplicationController < ActionController::Base
   end
   def check_user_flag(*flags)
     success = false
-    flags.each do |flag|
-      flag = flag.to_s
-      userFlag = UserFlag.find_by(user: current_user.id, content: flag)
-      if userFlag
-        success = true
+    if current_user
+      flags.each do |flag|
+        flag = flag.to_s
+        userFlag = UserFlag.find_by(user: current_user.id, content: flag)
+        if userFlag
+          success = true
+        end
       end
     end
     return success
