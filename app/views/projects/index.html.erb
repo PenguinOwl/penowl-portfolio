@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Catagory</th>
     <th>Image</th>
     <th></th>
   </tr>
@@ -10,6 +11,7 @@
   <% @projects.each do |project| %>
     <tr>
       <td><div class="container"><%= project.title %></div></td>
+      <td><div class="container"><b><%= project.catagory %></b></div></td>
       <td><img src="<%= project.imagelink %>" height="42" width="42"></td>
       <td><%= link_to 'Show', project_path(project) %></td>
     </tr>

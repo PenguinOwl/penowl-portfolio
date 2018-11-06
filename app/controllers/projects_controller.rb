@@ -6,11 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
-  end
-
-  def admin
-    @projects = Project.all
+    @projects = Project.all.sort_by {|project| project.catagory}
   end
 
   def show
