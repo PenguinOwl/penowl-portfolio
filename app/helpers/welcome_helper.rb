@@ -1,6 +1,6 @@
 module WelcomeHelper
   def random_name
-    res = case rand(5)
+    res = case rand(6)
     when 0 then "Human"
     when 1 then "User"
     when 2 then "Fella"
