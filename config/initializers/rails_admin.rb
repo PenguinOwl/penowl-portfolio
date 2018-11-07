@@ -45,6 +45,8 @@ RailsAdmin.config do |config|
     show_in_app
     flag_user
     flag_user_add
+    all
+    import
 
     ## With an audit adapter, you can add:
     # history_index

@@ -71,3 +71,4 @@ gem 'sprockets-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'rails_admin'
+gem "rails_admin_import"
