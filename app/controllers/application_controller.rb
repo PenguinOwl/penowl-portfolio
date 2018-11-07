@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
     success = false
     flags.each do |flag|
       flag = flag.to_s
-      userFlag = UserFlag.find_by(user: current_user.id, content: flag)
-      if userFlag
+      userFlagss = current_user.user_flags.map { |e| e.content  }
+      if userFlags.include? flag
         success = true
       end
     end
@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
     if current_user
       flags.each do |flag|
         flag = flag.to_s
-        userFlag = UserFlag.find_by(user: current_user.id, content: flag)
-        if userFlag
+        userFlags = current_user.user_flags.map { |e| e.content  }
+        if userFlags.include? flag
           success = true
         end
       end

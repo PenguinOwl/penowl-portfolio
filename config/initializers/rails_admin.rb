@@ -7,8 +7,13 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
+  require Rails.root.join('lib', 'rails_admin', 'flag_user.rb')
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::FlagUser)
+  require Rails.root.join('lib', 'rails_admin', 'flag_user_add.rb')
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::FlagUserAdd)
+
   config.authorize_with do
-   unless current_user && current_user.user_flags.include?(:admin)
+   unless current_user && current_user.user_flags.map { |e| e.content.to_sym }.include?(:admin)
      redirect_to main_app.root_path, notice: "You are not allowed to access the admin panel."
    end
   end
@@ -38,6 +43,8 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+    flag_user
+    flag_user_add
 
     ## With an audit adapter, you can add:
     # history_index
