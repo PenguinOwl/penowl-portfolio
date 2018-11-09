@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_170048) do
     t.bigint "user_id"
     t.bigint "comment_id"
     t.string "content"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comments_on_comment_id"
