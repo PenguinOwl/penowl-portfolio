@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2018_11_07_170048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comments_on_comment_id"
-    t.index ["comment_id"], name: "index_comments_on_comment_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
