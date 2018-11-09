@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Share+Tech+Mono|VT323" rel="stylesheet">
 <% unless notice.nil? %>
 <div class="notice">
   <div class="container-fluid">
@@ -29,6 +30,7 @@
 </head>
 
 <body>
+  <div id="modal-holder"></div>
   <div class='container-fluid mt-2'>
 
     <%= yield %>

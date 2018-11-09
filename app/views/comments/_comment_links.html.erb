@@ -1,0 +1,27 @@
+<span class="container">
+  <% if current_user %>
+  <%= link_to 'Reply', new_comment_path(comment_id: comment.id, comment: comment),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new', 'class' => 'reply-link'}  %>
+  <div id="modal-window-new" class="modal hide fade" role="dialog" aria-labelledby="new-comment-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  <% else %>
+  <span class="reply-link">(Log in to post & reply)</span>
+  <% end %>
+  <% if current_user and (is_mod or comment.user.id == current_user.id) %>
+  <%= link_to 'Edit', edit_comment_path(comment_id: tree.comment.id, comment_id: comment.id, comment: comment),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-edit', 'class' => 'reply-link'}  %>
+  <div id="modal-window-edit" class="modal hide fade" role="dialog" aria-labelledby="edit-comment-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  <span> </span>
+  <%= link_to 'Delete', predestroy_comment_path(comment_id: tree.comment.id, comment_id: comment.id, comment: comment),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-delete', 'class' => 'reply-link'}  %>
+  <div id="modal-window-predestroy" class="modal hide fade" role="dialog" aria-labelledby="delete-comment-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  <% end %>
+</span>

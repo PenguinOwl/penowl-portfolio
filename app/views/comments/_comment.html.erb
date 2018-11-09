@@ -1,0 +1,24 @@
+<div class='comment'>
+  <% lines = word_wrap(comment.content, line_width: 56).split("\n") %>
+  <pre class="inline comment"><%= @tree.next %></pre><br>
+  <pre class="inline comment"><%= @tree.next %></pre>
+  <span class="badge badge-dark">
+    <%= name = comment.user.username %>
+  </span>
+  <span class="container">
+    <%= lines.slice!(0)[0,56] %>
+  </span>
+  <% lines.each do |line| %>
+  <br>
+  <pre class="inline comment"><%= @tree.current %><%= " " * (name.size + 1) %><%= " " * (@tree.prev.size-@tree.current.size) %></pre>
+  <span class="container">
+    <%= line %>
+  </span>
+  <% end %>
+  <br>
+  <pre class="inline comment"><%= @tree.current %><%= " " * (name.size + 1) %><%= " " * (@tree.prev.size-@tree.current.size) %></pre>
+  <%= render "comment_links", tree: @tree, comment: comment, is_mod: @is_mod %>
+  <br>
+  <pre class="inline comment"><%= @tree.current %></pre>
+</div>
+<%= render comment.replies if comment.replies.any? %>

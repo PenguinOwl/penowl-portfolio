@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_043726) do
+ActiveRecord::Schema.define(version: 2018_11_07_170048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "content"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "bumped_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.string "content"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
@@ -37,6 +59,8 @@ ActiveRecord::Schema.define(version: 2018_11_07_043726) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
+    t.string "imagelink"
+    t.string "username"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "confirmation_token"
@@ -49,4 +73,8 @@ ActiveRecord::Schema.define(version: 2018_11_07_043726) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "comments"
+  add_foreign_key "comments", "comments"
+  add_foreign_key "comments", "users"
 end
