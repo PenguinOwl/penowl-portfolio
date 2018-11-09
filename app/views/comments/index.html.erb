@@ -1,0 +1,34 @@
+<h1>Threads</h1><%= link_to "+ New Thread", root_new_comments_path %>
+
+<script>
+
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+      window.location = $(this).data("href");
+    });
+  });
+
+</script>
+
+<table class="table table-striped table-hover table-bordered align-items-middle">
+  <thead class="thead thead-dark">
+    <tr>
+      <th colspan="2">User</th>
+      <th>Thread</th>
+      <th>Replies</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+    <tr class='clickable-row' data-href='/greddit/<%= comment.id %>/'>
+      <td><img src="<%= comment.user.imagelink %>" height="42" width="42"></td>
+      <td><div class="container-fluid"><b><%= comment.user.username %></b></div></td>
+      <td><div class="container-fluid"><%= comment.content[0..50] %></div></td>
+      <td><div class="container-fluid"><%= comment.replies.size %></div></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', "/" %>

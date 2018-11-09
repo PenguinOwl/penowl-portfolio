@@ -3,7 +3,7 @@
   <pre class="inline comment"><%= @tree.next %></pre><br>
   <pre class="inline comment"><%= @tree.next %></pre>
   <span class="badge badge-dark">
-    <%= name = User.find(comment.user_id).username %>
+    <%= name = comment.user.username %>
   </span>
   <span class="container">
     <%= lines.slice!(0)[0,56] %>

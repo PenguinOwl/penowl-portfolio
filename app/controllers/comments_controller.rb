@@ -1,16 +1,38 @@
 require 'tree_builder'
+require 'markdown'
 
 class CommentsController < ApplicationController
+
+  before_action except: [:index, :show] do
+    authenticate_user!
+    @is_mod = check_user_flag "admin", "mod"
+  end
+
   def create
-    if comment_params[:comment_id]
-      @root_comment = Comment.find comment_params[:comment_id]
-      @comment = @root_comment.replies.create comment_params
-      redirect_to CommentThread.find @root_comment.comment_thread_id
-    else
-      @comment_thread = CommentThread.find comment_params[:comment_thread_id]
-      @comment = @comment_thread.comments.create comment_params
-      redirect_to @comment_thread
+    @root_comment = Comment.find comment_params[:comment_id]
+    @comment = @root_comment.replies.create comment_params
+    up = @comment
+    while (up = Comment.find up.comment_id).comment_id
     end
+    redirect_to up
+  end
+
+  def create_root
+    @comment = Comment.new comment_params
+    @comment.save
+    redirect_to @comment
+  end
+
+  def index
+    @comments = Comment.all.sort_by {|e| e.created_at}
+    @comments = @comments.select { |item| !item.comment_id}
+  end
+
+  def show
+    @comment = Comment.find(params[:id])
+    @renderer = Redcarpet::Markdown.new(MarkdownRenderer, no_intra_emphasis: true, autolink: true, fenced_code_blocks: true, disable_indented_code_blocks: true)
+    @tree = TreeBuilder.new(@comment)
+    @tree.render
   end
 
   def new
@@ -19,8 +41,11 @@ class CommentsController < ApplicationController
       format.js
     end
     @comment = Comment.new
-    @root_comment = Comment.find params[:comment][:comment_id] if params[:comment]
-    @comment_thread = CommentThread.find params[:comment_thread_id]
+    @root_comment = Comment.find params[:comment_id]
+  end
+
+  def root_new
+    @comment = Comment.new
   end
 
   def edit
@@ -43,7 +68,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:comment_id])
 
     if @comment.update(comment_params)
-      redirect_to @comment.comment_thread
+      up = @comment
+      while (up = Comment.find up.comment_id).comment_id
+      end
+      redirect_to up
     else
       render 'edit'
     end
@@ -51,14 +79,18 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    to_redirect = @comment.comment_id
     @comment.destroy
-
-    redirect_to comment_thread_path
+    if to_redirect
+      redirect_to Comment.find(to_redirect)
+    else
+      redirect_to comments_path
+    end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :content, :comment_thread_id, :comment_id)
+    params.require(:comment).permit(:user_id, :content, :comment_id, :comment_id)
   end
 end

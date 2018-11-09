@@ -1,11 +1,11 @@
 class TreeBuilder
-  attr_reader :tree, :line, :comment_thread
-  def initialize(comment_thread)
+  attr_reader :tree, :line, :comment
+  def initialize(comment)
     @tree = [[true, false]]
     @render = ""
     @line = 0
-    @comment_thread = comment_thread
-    root_build comment_thread
+    @comment = comment
+    root_build comment
   end
   def build(comment)
     last_comment = comment.replies.last.id
@@ -17,8 +17,8 @@ class TreeBuilder
       build ecomment if ecomment.replies.any?
     end
   end
-  def root_build(thread)
-    comments = thread.comments.select { |comment| comment.comment_id == nil }
+  def root_build(root_comment)
+    comments = root_comment.replies
     last_comment = comments.last.try :id
     comments.each do |ecomment|
       shred

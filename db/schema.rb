@@ -15,25 +15,25 @@ ActiveRecord::Schema.define(version: 2018_11_07_170048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comment_threads", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.string "content"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "bumped_at", null: false
-    t.index ["user_id"], name: "index_comment_threads_on_user_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "comment_id"
     t.string "content"
-    t.bigint "comment_thread_id"
+    t.bigint "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comments_on_comment_id"
-    t.index ["comment_thread_id"], name: "index_comments_on_comment_thread_id"
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2018_11_07_170048) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comment_threads", "users"
-  add_foreign_key "comments", "comment_threads"
+  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "comments"
   add_foreign_key "comments", "comments"
   add_foreign_key "comments", "users"
 end

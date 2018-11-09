@@ -1,15 +1,15 @@
 <body>
   <h1>New Thread</h1>
-  <%= form_with scope: :comment_thread, url: comment_threads_path, local: true do |form| %>
+  <%= form_with scope: :comment, url: root_new_comments_path, action: :create_root, local: true do |form| %>
 
-  <% if @comment_thread.errors.any? %>
+  <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@comment_thread.errors.count, "error") %> prohibited
+        <%= pluralize(@comment.errors.count, "error") %> prohibited
         this thread from being saved:
       </h2>
       <ul>
-        <% @comment_thread.errors.full_messages.each do |msg| %>
+        <% @comment.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -35,5 +35,5 @@
 
   <% end %>
   <br>
-  <%= link_to 'Cancel', controller: 'comment_threads' %>
+  <%= link_to 'Cancel', controller: 'comments' %>
 </body>
