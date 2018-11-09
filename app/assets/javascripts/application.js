@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require jquery3
 //= require popper
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
 //= require bootstrap-sprockets
 //= require_tree .

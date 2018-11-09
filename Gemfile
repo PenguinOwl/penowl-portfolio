@@ -72,3 +72,5 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'rails_admin'
 gem "rails_admin_import"
+gem 'popper_js'
+gem 'bootstrap-modal-rails'

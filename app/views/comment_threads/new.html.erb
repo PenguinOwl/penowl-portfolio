@@ -1,0 +1,39 @@
+<body>
+  <h1>New Thread</h1>
+  <%= form_with scope: :comment_thread, url: comment_threads_path, local: true do |form| %>
+
+  <% if @comment_thread.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@comment_thread.errors.count, "error") %> prohibited
+        this thread from being saved:
+      </h2>
+      <ul>
+        <% @comment_thread.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <br>
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, size: "50x6" %>
+  </p>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <br>
+  <p>
+    <%= form.submit %>
+  </p>
+
+  <% end %>
+  <br>
+  <%= link_to 'Cancel', controller: 'comment_threads' %>
+</body>

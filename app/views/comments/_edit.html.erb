@@ -1,0 +1,15 @@
+<%= form_for comment, url: comment_thread_comment_path(comment_id: comment.id), action: "update" do |form| %>
+<div class="modal-header">
+  <h4 class="modal-title" id="new-comment-modal">Edit Comment</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body">
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, value: comment.content %>
+  </p>
+</div>
+<div class="modal-footer">
+  <%= form.submit nil, class: "btn btn-primary" %><button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+</div>
+<% end %>

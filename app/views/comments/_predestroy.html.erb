@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="predestroy-comment-modal">Delete Comment</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body">
+  <p>
+    Are you sure you want to delete "<%= comment.content %>"?
+  </p>
+</div>
+<div class="modal-footer">
+  <%= button_to "Delete", comment_thread_comment_path(id: comment.id), class: "btn btn-primary", method: :delete %><button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+</div>

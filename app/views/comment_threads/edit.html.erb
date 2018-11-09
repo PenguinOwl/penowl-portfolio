@@ -1,0 +1,45 @@
+<h1>Edit comment_thread</h1>
+
+<%= form_with(model: @comment_thread, local: true) do |form| %>
+
+  <% if @comment_thread.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@comment_thread.errors.count, "error") %> prohibited
+        this comment_thread from being saved:
+      </h2>
+      <ul>
+        <% @comment_thread.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text, size: "100x12" %>
+  </p>
+
+  <p>
+    <%= form.label :date %><br>
+    <%= form.text_field :date %>
+  </p>
+
+  <p>
+    <%= form.label :imagelink %><br>
+    <%= form.text_field :imagelink %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', comment_threads_path %>

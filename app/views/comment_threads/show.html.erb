@@ -1,0 +1,21 @@
+<h3><%= @comment_thread.title.html_safe %></h3>
+<hr>
+<span class="badge badge-info">
+  <%= @comment_thread.user.username.html_safe %>
+</span>
+<span class="container">
+  <b>
+    <%= @renderer.render(@comment_thread.content).html_safe %>
+  </b>
+</span>
+<br>
+<pre class="inline comment"><%= " " * (@comment_thread.user.username.size) %></pre>
+<%= render "root_comment_links", tree: @tree, comment_thread: @comment_thread, is_mod: @is_mod %>
+<hr>
+<%= render @comment_thread.comments.select { |comment| comment.comment_id == nil } %>
+<br>
+<hr>
+<br>
+
+<%= link_to 'Edit', edit_comment_thread_path(@comment_thread) %> |
+<%= link_to 'Back', comment_threads_path %>
