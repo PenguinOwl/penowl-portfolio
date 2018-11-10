@@ -9,6 +9,7 @@
     <%= form.text_area :content %>
     <%= form.hidden_field :comment_id, value: @root_comment.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :title, value: "Reply" %>
   </p>
 </div>
 <div class="modal-footer">
