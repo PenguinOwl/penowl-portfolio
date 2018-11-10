@@ -8,7 +8,7 @@ class TreeBuilder
     build comment
   end
   def build(comment)
-    last_comment = comment.replies.last.id
+    last_comment = comment.replies.last.try(:id)
     comment.replies.each do |ecomment|
       shred
       @tree << @tree[-1] + [true,true,true]

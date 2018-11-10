@@ -10,10 +10,11 @@ class CommentsController < ApplicationController
 
   def create
     @root_comment = Comment.find comment_params[:comment_id]
-    up = @root_comment.replies.create comment_params
+    @comment = @root_comment.replies.create comment_params
+    up = @comment
     while (up = Comment.find up.comment_id).comment_id
     end
-    redirect_to up
+    redirect_to( (url_for up) + "#" + @comment.id.to_s )
   end
 
   def create_root
@@ -24,6 +25,7 @@ class CommentsController < ApplicationController
   def index
     @comments = Comment.all.sort_by {|e| e.created_at}
     @comments = @comments.select { |item| !item.comment_id}
+    @comments.reverse!
   end
 
   def show
@@ -72,7 +74,7 @@ class CommentsController < ApplicationController
       else
         while (up = Comment.find up.comment_id).comment_id
         end
-        redirect_to up
+        redirect_to( (url_for up) + "#" + @comment.id.to_s )
       end
     else
       render 'edit'
