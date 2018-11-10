@@ -7,7 +7,6 @@
   <%= @renderer.render(@comment.content).html_safe %>
 </span>
 <br>
-<br>
 <%= render "comment_links", tree: @tree, comment: @comment, is_mod: @is_mod %>
 <hr>
 <%= render @comment.replies %>
