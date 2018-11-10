@@ -4,13 +4,11 @@
   <button type="button" class="close" data-dismiss="modal">x</button>
 </div>
 <div class="modal-body">
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-    <%= form.hidden_field :comment_id, value: @root_comment.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.hidden_field :title, value: "Reply" %>
-  </p>
+  <%= form.label :content %><br>
+    <%= form.text_area :content, style: "width: 100%;" %>
+  <%= form.hidden_field :comment_id, value: @root_comment.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :title, value: "Reply" %>
 </div>
 <div class="modal-footer">
   <%= form.submit nil, class: "btn btn-primary" %><button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
