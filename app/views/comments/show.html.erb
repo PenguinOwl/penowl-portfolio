@@ -7,7 +7,6 @@
   <%= @renderer.render(@comment.content).html_safe %>
 </span>
 <br>
-<pre class="inline comment"><%= " " * (@comment.user.username.size) %></pre>
 <%= render "comment_links", tree: @tree, comment: @comment, is_mod: @is_mod %>
 <hr>
 <%= render @comment.replies %>
@@ -15,5 +14,4 @@
 <hr>
 <br>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>
