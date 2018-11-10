@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
 
   def create
     @root_comment = Comment.find comment_params[:comment_id]
-    @comment = @root_comment.replies.create comment_params
-    up = @comment
+    up = @root_comment.replies.create comment_params
     while (up = Comment.find up.comment_id).comment_id
     end
     redirect_to up
@@ -85,7 +84,10 @@ class CommentsController < ApplicationController
     to_redirect = @comment.comment_id
     @comment.destroy
     if to_redirect
-      redirect_to Comment.find(to_redirect)
+      up = Comment.find(to_redirect)
+      while (up = Comment.find up.comment_id).comment_id
+      end
+      redirect_to up
     else
       redirect_to comments_path
     end

@@ -5,7 +5,7 @@ class TreeBuilder
     @render = ""
     @line = 0
     @comment = comment
-    root_build comment
+    build comment
   end
   def build(comment)
     last_comment = comment.replies.last.id
@@ -14,20 +14,6 @@ class TreeBuilder
       @tree << @tree[-1] + [true,true,true]
       @tree << @tree[-2] + (ecomment.replies.any? ? [false,true] : [false,false])
       @tree[-1][-3] = false if last_comment == ecomment.id
-      build ecomment if ecomment.replies.any?
-    end
-  end
-  def root_build(root_comment)
-    comments = root_comment.replies
-    last_comment = comments.last.try :id
-    comments.each do |ecomment|
-      shred
-      @tree[-1] << false
-      @tree << @tree[-1] + [true,true]
-      @tree[-1][-3] = true
-      @tree << @tree[-2] + (ecomment.replies.any? ? [true,false] : [false,false])
-      shred(3)
-      @tree[-1][-1] = false if last_comment == ecomment.id
       build ecomment if ecomment.replies.any?
     end
   end
