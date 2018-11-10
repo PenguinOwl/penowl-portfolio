@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
   <%= form.label :content %><br>
-    <%= form.text_area :content, style: "width: 100%;" %>
+  <%= form.text_area :content, style: "width: 100%;" %>
   <%= form.hidden_field :comment_id, value: @root_comment.id %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= form.hidden_field :title, value: "Reply" %>

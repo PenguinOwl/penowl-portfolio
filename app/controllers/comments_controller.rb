@@ -18,8 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def create_root
-    @comment = Comment.new comment_params
-    @comment.save
+    @comment = Comment.create comment_params
     redirect_to @comment
   end
 
@@ -69,9 +68,13 @@ class CommentsController < ApplicationController
 
     if @comment.update(comment_params)
       up = @comment
-      while (up = Comment.find up.comment_id).comment_id
+      unless up.comment_id
+        redirect_to up
+      else
+        while (up = Comment.find up.comment_id).comment_id
+        end
+        redirect_to up
       end
-      redirect_to up
     else
       render 'edit'
     end

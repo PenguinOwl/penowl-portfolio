@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   has_many   :replies, class_name: "Comment", dependent: :destroy
   belongs_to :user
   validates :title, presence: true, length: { minimum: 5 }
-  validates :content, presence: true, length: { minimum: 20 }
+  validates :content, presence: true, length: { minimum: 2 }
   def nest_level
     nest_level = 1
     comment = self
