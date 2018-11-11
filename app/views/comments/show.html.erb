@@ -1,10 +1,10 @@
-<!-- <h3>< @comment.title.html_safe %></h3> -->
+<!-- <h3>< @comment.title %></h3> -->
 <!-- <hr> -->
 <span class="badge badge-info">
-  <%= @comment.user.username.html_safe %>
+  <%= @comment.user.username %>
 </span>
 <span class="container">
-  <%= @renderer.render(@comment.content).html_safe %>
+  <%= @renderer.render(@comment.content) %>
 </span>
 <br>
 <%= render "comment_links", tree: @tree, comment: @comment, is_mod: @is_mod %>

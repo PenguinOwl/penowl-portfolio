@@ -1,22 +1,22 @@
 
-<h1><%= @project.title.html_safe %></h1>
+<h1><%= @project.title %></h1>
 <hr>
 <br>
-<img src="<%= @project.imagelink.html_safe %>" alt="Project Image" width="400">
+<img src="<%= @project.imagelink %>" alt="Project Image" width="400">
 <br>
 <br>
 <hr>
 <br>
 <p>
   <strong>Info:</strong><br>
-  <%= @renderer.render(@project.text).html_safe %>
+  <%= @renderer.render(@project.text) %>
 </p>
 <br>
 <hr>
 <br>
 <p>
   <strong>Date completed:</strong><br>
-  <%= @project.date.html_safe %>
+  <%= @project.date %>
 </p>
 <br>
 <hr>

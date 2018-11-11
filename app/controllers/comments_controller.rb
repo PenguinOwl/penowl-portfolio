@@ -44,6 +44,10 @@ class CommentsController < ApplicationController
     @root_comment = Comment.find params[:comment_id]
   end
 
+  def search
+
+  end
+
   def root_new
     @comment = Comment.new
   end
