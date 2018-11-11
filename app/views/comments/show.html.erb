@@ -4,7 +4,7 @@
   <%= @comment.user.username %>
 </span>
 <span class="container">
-  <%= @renderer.render(@comment.content) %>
+  <%= sanitize @renderer.render(@comment.content) %>
 </span>
 <br>
 <%= render "comment_links", tree: @tree, comment: @comment, is_mod: @is_mod %>
