@@ -3,11 +3,13 @@ class ApplicationController < ActionController::Base
 
   def user_flag(*flags)
     success = false
-    flags.each do |flag|
-      flag = flag.to_s
-      userFlagss = current_user.user_flags.map { |e| e.content  }
-      if userFlags.include? flag
-        success = true
+    if current_user
+      userFlags = current_user.user_flags.map { |e| e.content  }
+      flags.each do |flag|
+        flag = flag.to_s
+        if userFlags.include? flag
+          success = true
+        end
       end
     end
     unless success
@@ -17,9 +19,9 @@ class ApplicationController < ActionController::Base
   def check_user_flag(*flags)
     success = false
     if current_user
+      userFlags = current_user.user_flags.map { |e| e.content }
       flags.each do |flag|
         flag = flag.to_s
-        userFlags = current_user.user_flags.map { |e| e.content  }
         if userFlags.include? flag
           success = true
         end

@@ -18,8 +18,9 @@
   <% end %>
   <br>
   <pre class="inline comment"><%= @tree.current %><%= " " * (name.size + 1) %><%= " " * (@tree.prev.size-@tree.current.size) %></pre>
-  <%= render "comment_links", tree: @tree, comment: comment, is_mod: @is_mod %>
+  <%= render "comment_links", tree: @tree, comment: comment %>
   <br>
+  <%puts @is_mod%>
   <pre class="inline comment"><%= @tree.current %></pre>
 </div>
 <%= render comment.replies if comment.replies.any? %>

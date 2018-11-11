@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
 
   before_action except: [:index, :show] do
     authenticate_user!
-    @is_mod = check_user_flag "admin", "mod"
   end
 
   def create
@@ -33,6 +32,7 @@ class CommentsController < ApplicationController
     @renderer = Redcarpet::Markdown.new(MarkdownRenderer, no_intra_emphasis: true, autolink: true, fenced_code_blocks: true, disable_indented_code_blocks: true)
     @tree = TreeBuilder.new(@comment)
     @tree.render
+    @is_mod = check_user_flag :admin, :mod
   end
 
   def new
