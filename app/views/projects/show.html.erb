@@ -9,7 +9,7 @@
 <br>
 <p>
   <strong>Info:</strong><br>
-  <%= @renderer.render(@project.text) %>
+  <%= @renderer.render(@project.text).html_safe %>
 </p>
 <br>
 <hr>

@@ -18,7 +18,7 @@ module RailsAdmin
           false
         end
         register_instance_option :visible? do
-          bindings[:object].class == UserFlag
+          bindings[:object].class == User
         end
         # register_instance_option :controller do
         #   proc do
